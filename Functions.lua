@@ -20,6 +20,11 @@ function back()
     makeList(data)
 end
 
+function stop()
+    StopMusic()
+    StopButton:Hide()
+end
+
 function makeList(entries)
     for index, entry in pairs(entries) do
         if index <= g.rowCount then
@@ -68,6 +73,7 @@ function setSongButton(index, song)
     row:SetText(song)
     row:SetScript('OnClick', function()
         PlayMusic('Sound/Music/' .. song .. '.mp3')
+        StopButton:Show()
     end)
     row:Show()
 end

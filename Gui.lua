@@ -42,6 +42,14 @@ backButton:SetText('Back')
 backButton:SetScript('OnClick', back)
 backButton:Hide()
 
+local stopButton = CreateFrame('Button', 'StopButton', frame, 'UIPanelButtonTemplate')
+stopButton:SetPoint('TopRight', backButton, 'TopLeft', 0, 0)
+stopButton:SetHeight(20)
+stopButton:SetWidth(50)
+stopButton:SetText('Stop')
+stopButton:SetScript('OnClick', stop)
+stopButton:Hide()
+
 g.rowCount = 12
 for i = 1, g.rowCount do
     local r = CreateFrame('Button', nil, scrollFrame, 'UIPanelButtonTemplate')
