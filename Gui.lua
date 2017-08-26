@@ -1,7 +1,7 @@
 local g = Global
 
 Tunguska = CreateFrame('Frame', 'Tunguska', UIParent, 'ButtonFrameTemplate')
-TunguskaTitleText:SetText('Tunguska v2.0')
+TunguskaTitleText:SetText('Tunguska v' .. g.version)
 SetPortraitToTexture(TunguskaPortrait, 'Interface\\Icons\\trade_archaeology_delicatemusicbox');
 
 local frame = Tunguska

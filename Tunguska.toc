@@ -1,8 +1,8 @@
 ## Interface: 70200
 ## Title: Tunguska
 ## Author: Jordan Fallon (https://github.com/thefetts)
-## Version: 7.2.0
-## Notes: Play Some Nostalgic Songs
+## Version: 7.2.5.1
+## Notes: Play Songs from Around the World of Warcraft
 ## DefaultState: Enabled
 ## LoadOnDemand: 0
 
