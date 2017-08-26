@@ -51,3 +51,9 @@ for i = 1, g.rowCount do
     table.insert(scrollFrame.rows, r)
     r:Hide()
 end
+
+SLASH_tunguska1 = '/tgk'
+SLASH_tunguska2 = '/tunguska'
+SlashCmdList['tunguska'] = function()
+    g.frame:Show()
+end
