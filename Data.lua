@@ -88,6 +88,12 @@ g.data = {
             { name = 'Crystalsong Forest' },
             { name = 'Dalaran' },
             { name = 'Dragonblight' },
+            {
+                name = 'Grizzly Hills',
+                songs = {
+                    'ZoneMusic/GrizzlyHills/GH_Intro2Uni01'
+                }
+            },
             { name = 'Howling Fjord' },
             { name = 'Icecrown' },
             { name = 'Sholazar Basin' },
@@ -152,7 +158,12 @@ g.data = {
             { name = 'Azsuna' },
             { name = 'The Broken Shore' },
             { name = 'Dalaran' },
-            { name = 'Highmountain' },
+            {
+                name = 'Highmountain',
+                songs = {
+                    'legion/MUS_70_Totems_H'
+                }
+            },
             { name = 'Stormheim' },
             { name = 'Suramar' },
             { name = "Val'sharah" },

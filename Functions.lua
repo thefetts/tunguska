@@ -20,8 +20,8 @@ function back()
     makeList(data)
 end
 
-function makeList(set)
-    for index, entry in pairs(set) do
+function makeList(entries)
+    for index, entry in pairs(entries) do
         if index <= g.rowCount then
             setButton(index, entry)
         else
@@ -30,16 +30,44 @@ function makeList(set)
     end
 end
 
+function makeSongList(songs)
+    for index, song in pairs(songs) do
+        if index <= g.rowCount then
+            setSongButton(index, song)
+        else
+            break
+        end
+    end
+end
+
+function buttonHandler(index, entry)
+    if entry.entries or entry.songs then
+        hideRows()
+        BackButton:Show()
+        table.insert(g.location, index)
+
+        if entry.entries and #entry.entries > 0 then
+            makeList(entry.entries)
+        elseif entry.songs and #entry.songs > 0 then
+            makeSongList(entry.songs)
+        end
+    end
+end
+
 function setButton(index, entry)
     local row = TunguskaSF.rows[index]
     row:SetText(entry.name)
     row:SetScript('OnClick', function()
-        if #entry.entries > 0 then
-            hideRows()
-            makeList(entry.entries)
-            BackButton:Show()
-            table.insert(g.location, index)
-        end
+        buttonHandler(index, entry)
+    end)
+    row:Show()
+end
+
+function setSongButton(index, song)
+    local row = TunguskaSF.rows[index]
+    row:SetText(song)
+    row:SetScript('OnClick', function()
+        PlayMusic('Sound/Music/' .. song .. '.mp3')
     end)
     row:Show()
 end
