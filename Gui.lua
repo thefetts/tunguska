@@ -16,14 +16,14 @@ frame:SetScript('OnDragStop', frame.StopMovingOrSizing)
 frame:SetWidth(300)
 frame:SetHeight(350)
 frame:Show()
-frame.location = {}
+g.location = {}
 g.frame = frame
 
 local texture = frame:CreateTexture(nil, 'Artwork')
 texture:SetColorTexture(0, 0, 0, 0.3)
 texture:SetAllPoints(frame)
 
-local scrollFrame = CreateFrame('ScrollFrame', nil, frame)
+local scrollFrame = CreateFrame('ScrollFrame', 'TunguskaSF', frame)
 scrollFrame:SetPoint('TopLeft', frame, 'TopLeft', 9, -65)
 scrollFrame:SetPoint('BottomRight', frame, 'BottomRight', -11, 30)
 scrollFrame:Show()
