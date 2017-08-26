@@ -1,1 +1,1 @@
-Tunguska = {}
+Global = {}

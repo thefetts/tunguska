@@ -1,46 +1,53 @@
-local t = Tunguska
+local g = Global
 
-local f = CreateFrame("FRAME", "Tunguska", UIParent)
-f:SetPoint("CENTER", 0, 0)
-f:SetFrameStrata("high")
-f:SetMovable(true)
-f:EnableMouse(true)
-f:SetClampedToScreen(true)
-f:RegisterForDrag("LeftButton")
-f:SetScript("OnDragStart", f.StartMoving)
-f:SetScript("OnDragStop", f.StopMovingOrSizing)
-f:SetWidth(200)
-f:SetHeight(212)
-f:Show()
-f.rows = {}
-f.location = {}
-t.f = f
+Tunguska = CreateFrame('Frame', 'Tunguska', UIParent, 'ButtonFrameTemplate')
+TunguskaTitleText:SetText('Tunguska v2.0')
+SetPortraitToTexture(TunguskaPortrait, 'Interface\\Icons\\trade_archaeology_delicatemusicbox');
 
-local tx = f:CreateTexture(nil, "ARTWORK")
-f.bg = tx
-tx:SetColorTexture(0, 0, 0, 0.8)
-tx:SetAllPoints(f)
+local frame = Tunguska
+frame:SetPoint('Center', 0, 0)
+frame:SetFrameStrata('high')
+frame:SetMovable(true)
+frame:EnableMouse(true)
+frame:SetClampedToScreen(true)
+frame:RegisterForDrag('LeftButton')
+frame:SetScript('OnDragStart', frame.StartMoving)
+frame:SetScript('OnDragStop', frame.StopMovingOrSizing)
+frame:SetWidth(300)
+frame:SetHeight(350)
+frame:Show()
+frame.location = {}
+g.frame = frame
 
-local x = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
-x:SetPoint("TOPRIGHT", f, "TOPRIGHT", -5, -5)
-x:SetText("X")
-x:SetWidth("22")
-x:SetHeight("22")
-x:SetScript("OnClick", function() f:Hide() end)
+local texture = frame:CreateTexture(nil, 'Artwork')
+texture:SetColorTexture(0, 0, 0, 0.3)
+texture:SetAllPoints(frame)
 
-local b = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
-b:SetPoint("TOPRIGHT", f, "TOPRIGHT", -5, -27)
-b:SetText("<")
-b:SetWidth("22")
-b:SetHeight("22")
-b:SetScript("OnClick", back)
+local scrollFrame = CreateFrame('ScrollFrame', nil, frame)
+scrollFrame:SetPoint('TopLeft', frame, 'TopLeft', 9, -65)
+scrollFrame:SetPoint('BottomRight', frame, 'BottomRight', -11, 30)
+scrollFrame:Show()
+scrollFrame.rows = {}
+frame.scrollFrame = scrollFrame
 
-rowCount = 10
-for i = 1, rowCount do
-    local r = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
-    r:SetPoint("TOPLEFT", f, "TOPLEFT", 5, -(20 * i) + 15)
+local texture2 = scrollFrame:CreateTexture(nil, 'Artwork')
+texture2:SetColorTexture(0, 0, 0, 0.2)
+texture2:SetAllPoints(scrollFrame)
+
+local backButton = CreateFrame('Button', 'BackButton', frame, 'UIPanelButtonTemplate')
+backButton:SetPoint('TopRight', frame, 'TopRight', -10, -35)
+backButton:SetHeight(20)
+backButton:SetWidth(50)
+backButton:SetText('Back')
+backButton:SetScript('OnClick', back)
+backButton:Hide()
+
+g.rowCount = 12
+for i = 1, g.rowCount do
+    local r = CreateFrame('Button', nil, scrollFrame, 'UIPanelButtonTemplate')
+    r:SetPoint('TopLeft', scrollFrame, 'TopLeft', 5, -(20 * i) + 15)
     r:SetHeight(20)
-    r:SetWidth(f:GetWidth() - 35)
-    table.insert(f.rows, r)
+    r:SetWidth(scrollFrame:GetWidth() - 10)
+    table.insert(scrollFrame.rows, r)
     r:Hide()
 end

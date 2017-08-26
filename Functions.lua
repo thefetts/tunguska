@@ -1,21 +1,22 @@
-local t = Tunguska
+local g = Global
 
 function hideRows()
-    for _, row in pairs(t.f.rows) do
+    for _, row in pairs(g.frame.scrollFrame.rows) do
         row:Hide()
     end
 end
 
 function back()
     hideRows()
-    if #t.f.location == 0 then
-        makeList(t.data)
+    if #g.frame.location == 0 then
+        makeList(g.data)
+        BackButton:Hide()
     end
 end
 
 function makeList(set)
     for index, entry in pairs(set) do
-        if index <= 10 then
+        if index <= g.rowCount then
             setButton(index, entry)
         else
             break
@@ -24,13 +25,14 @@ function makeList(set)
 end
 
 function setButton(index, entry)
-    local r = t.f.rows[index]
-    r:SetText(entry.name)
-    r:SetScript("OnClick", function()
+    local row = g.frame.scrollFrame.rows[index]
+    row:SetText(entry.name)
+    row:SetScript('OnClick', function()
         if #entry.entries > 0 then
             hideRows()
             makeList(entry.entries)
+            BackButton:Show()
         end
     end)
-    r:Show()
+    row:Show()
 end

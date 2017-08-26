@@ -1,2 +1,2 @@
-local t = Tunguska
-makeList(t.data)
+local g = Global
+makeList(g.data)
