@@ -20,7 +20,6 @@ function hideRows()
 end
 
 function back(self)
-    hideRows()
     local data = g.data
     table.remove(g.location)
     if #g.location == 0 then
@@ -59,6 +58,7 @@ function setSongButton(index, song)
 end
 
 function makeList(entry, start, scrollbar)
+    hideRows()
     local entries = entry.entries or {}
     local songs = entry.songs or {}
     local combinedLength = #entries + #songs
@@ -88,7 +88,6 @@ end
 
 function buttonHandler(index, entry, scrollbar)
     if entry.entries or entry.songs then
-        hideRows()
         BackButton:Show()
         table.insert(g.location, index)
         makeList(entry, 1, scrollbar)
@@ -98,7 +97,6 @@ end
 function onScroll(self, value)
     local sf = g.frame.scrollFrame
     log('Scrolled: ' .. value)
-    hideRows()
     makeList(sf.data, math.floor(value), self)
 end
 

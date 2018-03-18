@@ -127,21 +127,7 @@ g.data = {
                         },
                     }
                 },
-                {
-                    name = 'Mists of Pandaria',
-                    entries = {
-                        { name = 'Dread Wastes' },
-                        { name = 'Isle of Giants' },
-                        { name = 'Isle of Thunder' },
-                        { name = 'The Jade Forest' },
-                        { name = 'Krasarang Wilds' },
-                        { name = 'Kun-Lai Summit' },
-                        { name = 'Timeless Isle' },
-                        { name = 'Townlong Steppes' },
-                        { name = 'Vale of Eternal Blossoms' },
-                        { name = 'Valley of the Four Winds' },
-                    }
-                },
+                Pandaria,
                 {
                     name = 'Warlords of Draenor',
                     entries = {
