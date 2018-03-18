@@ -173,13 +173,16 @@ g.data = {
         name = 'Blizzard\'s Sorting',
         entries = {
             CataclysmBlizzard,
+            CityMusicBlizzard,
             DraenorBlizzard,
             EventBlizzard,
             GlueScreenMusicBlizzard,
             LegionBlizzard,
+            MusicalMomentsBlizzard,
             PandariaBlizzard,
             PetBattlesBlizzard,
             WorldEventsBlizzard,
+            ZoneMusicBlizzard,
         }
     }
 }

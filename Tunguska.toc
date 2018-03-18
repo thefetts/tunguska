@@ -9,13 +9,16 @@
 Init.lua
 
 data/CataclysmDataBlizzard.lua
+data/CityMusicDataBlizzard.lua
 data/DraenorDataBlizzard.lua
 data/EventDataBlizzard.lua
 data/GlueScreenMusicDataBlizzard.lua
 data/LegionDataBlizzard.lua
+data/MusicalMomentsDataBlizzard.lua
 data/PandariaDataBlizzard.lua
 data/PetBattlesDataBlizzard.lua
 data/WorldEventsDataBlizzard.lua
+data/ZoneMusicDataBlizzard.lua
 
 data/LegionData.lua
 
