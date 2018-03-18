@@ -1637,5 +1637,13 @@ ZoneMusicBlizzard = {
         ZangarmarshBlizzard,
         ZulAmanBlizzard,
         ZulDrakBlizzard,
+    },
+    songs = {
+        'zonemusic/dmf_l70etc01',
+        'zonemusic/os1',
+        'zonemusic/os2',
+        'zonemusic/os3',
+        'zonemusic/os4',
+        'zonemusic/os5',
     }
 }

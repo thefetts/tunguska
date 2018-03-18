@@ -2,7 +2,7 @@ local g = Global
 
 Tunguska = CreateFrame('Frame', 'Tunguska', UIParent, 'ButtonFrameTemplate')
 TunguskaTitleText:SetText('Tunguska v' .. g.version)
-SetPortraitToTexture(TunguskaPortrait, 'Interface\\Icons\\trade_archaeology_delicatemusicbox');
+SetPortraitToTexture(TunguskaPortrait, 'Interface\\Icons\\trade_archaeology_delicatemusicbox')
 
 local frame = Tunguska
 frame:SetPoint('Center', 0, 0)

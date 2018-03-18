@@ -93,5 +93,10 @@ MusicalMomentsBlizzard = {
         SacredBlizzard,
         SpookyBlizzard,
         SwampBlizzard,
+    },
+    songs = {
+        'musical moments/guldansentrancetheme',
+        'musical moments/sp_templeofstormsactionuni01',
+        'musical moments/zulgurubvoodoo',
     }
 }
