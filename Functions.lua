@@ -14,6 +14,9 @@ function hideRows()
     for _, row in pairs(TunguskaSF.rows) do
         row:Hide()
     end
+    for _, row in pairs(TunguskaSF.songRows) do
+        row:Hide()
+    end
 end
 
 function back(self)
@@ -47,18 +50,18 @@ function makeSongList(songs, start, scrollbar)
 end
 
 function makeList(items, start, scrollbar, method)
-    log("making list for " .. #items .. " items")
+    log('making list for ' .. #items .. ' items')
     local start = start or 1
     local stop = math.min(start + g.rowCount - 1, #items)
-    log("start: " .. start .. ", stop: " .. stop)
+    log('start: ' .. start .. ', stop: ' .. stop)
     for index, item in pairs(table.slice(items, start, stop, 1)) do
         method(index, item, scrollbar)
     end
     g.frame.scrollFrame.data = items
     local scrollMax = math.max(#items - (g.rowCount - 1), start)
-    log("setting scroll from 1 to " .. scrollMax)
+    log('setting scroll from 1 to ' .. scrollMax)
     scrollbar:SetMinMaxValues(1, scrollMax)
-    log("done setting scroll")
+    log('done setting scroll')
 end
 
 function buttonHandler(index, entry, scrollbar)
@@ -85,7 +88,7 @@ function setCategoryButton(index, entry, scrollbar)
 end
 
 function setSongButton(index, song)
-    local row = TunguskaSF.rows[index]
+    local row = TunguskaSF.songRows[index]
     row:SetText(song)
     row:SetScript('OnClick', function()
         PlayMusic('Sound/Music/' .. song .. '.mp3')
@@ -96,8 +99,8 @@ end
 
 function onScroll(self, value)
     local sf = g.frame.scrollFrame
-    log("Scrolled: " .. value);
-    log("Data size: " .. table.getn(sf.data))
+    log('Scrolled: ' .. value);
+    log('Data size: ' .. table.getn(sf.data))
     if sf.dataType == 'categories' then
         makeCategoryList(sf.data, math.floor(value), self)
     else

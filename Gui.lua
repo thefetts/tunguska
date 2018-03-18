@@ -28,13 +28,14 @@ scrollFrame:SetPoint('TopLeft', frame, 'TopLeft', 9, -65)
 scrollFrame:SetPoint('BottomRight', frame, 'BottomRight', -11, 30)
 scrollFrame:Show()
 scrollFrame.rows = {}
+scrollFrame.songRows = {}
 frame.scrollFrame = scrollFrame
 
-local scrollbar = CreateFrame("Slider", 'ScrollBar', scrollFrame, "UIPanelScrollBarTemplate")
-scrollbar:SetPoint("TOPRIGHT", scrollFrame, "TOPRIGHT", 0, -15)
-scrollbar:SetPoint("BOTTOMRIGHT", scrollFrame, "BOTTOMRIGHT", 0, 15)
-scrollbar:SetScript("OnValueChanged", onScroll)
-scrollbar.back = scrollbar:CreateTexture(nil, "BACKGROUND")
+local scrollbar = CreateFrame('Slider', 'ScrollBar', scrollFrame, 'UIPanelScrollBarTemplate')
+scrollbar:SetPoint('TOPRIGHT', scrollFrame, 'TOPRIGHT', 0, -15)
+scrollbar:SetPoint('BOTTOMRIGHT', scrollFrame, 'BOTTOMRIGHT', 0, 15)
+scrollbar:SetScript('OnValueChanged', onScroll)
+scrollbar.back = scrollbar:CreateTexture(nil, 'BACKGROUND')
 scrollbar.back:SetColorTexture(0,0,0,0.4)
 scrollbar.back:SetAllPoints(scrollbar)
 scrollbar:SetMinMaxValues(1, 1)
@@ -74,6 +75,19 @@ for i = 1, g.rowCount do
     r:SetWidth(scrollFrame:GetWidth() - 25)
     table.insert(scrollFrame.rows, r)
     r:Hide()
+
+    local s = CreateFrame('Button', nil, scrollFrame)
+    s:SetPoint('TopLeft', scrollFrame, 'TopLeft', 5, -(20 * i) + 15)
+    s:SetHeight(20)
+    s:SetWidth(scrollFrame:GetWidth() - 25)
+    s.Label = s:CreateFontString(nil, 'ARTWORK', 'GameFontNormal')
+    s.Label:SetJustifyH('LEFT')
+    s.Label:SetAllPoints(true)
+    s:SetFontString(s.Label)
+    s:SetNormalFontObject('GameFontNormal')
+    s:SetHighlightFontObject('GameFontHighlight')
+    table.insert(scrollFrame.songRows, s)
+    s:Hide()
 end
 
 SLASH_tunguska1 = '/tgk'

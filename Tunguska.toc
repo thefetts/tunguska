@@ -8,7 +8,17 @@
 
 Init.lua
 
+data/CataclysmDataBlizzard.lua
+data/DraenorDataBlizzard.lua
+data/EventDataBlizzard.lua
+data/GlueScreenMusicDataBlizzard.lua
+data/LegionDataBlizzard.lua
+data/PandariaDataBlizzard.lua
+data/PetBattlesDataBlizzard.lua
+data/WorldEventsDataBlizzard.lua
+
 data/LegionData.lua
+
 Data.lua
 
 Functions.lua
