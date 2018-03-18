@@ -1,12 +1,22 @@
 local g = Global
 
+function table.slice(tbl, first, last, step)
+    local sliced = {}
+
+    for i = first or 1, last or #tbl, step or 1 do
+        sliced[#sliced + 1] = tbl[i]
+    end
+
+    return sliced
+end
+
 function hideRows()
     for _, row in pairs(TunguskaSF.rows) do
         row:Hide()
     end
 end
 
-function back()
+function back(self)
     hideRows()
     local data = g.data
     table.remove(g.location)
@@ -17,7 +27,8 @@ function back()
             data = data[value].entries
         end
     end
-    makeList(data)
+
+    makeCategoryList(data, 1, self:GetParent().ScrollBar)
 end
 
 function stop()
@@ -25,45 +36,50 @@ function stop()
     StopButton:Hide()
 end
 
-function makeList(entries)
-    for index, entry in pairs(entries) do
-        if index <= g.rowCount then
-            setButton(index, entry)
-        else
-            break
-        end
-    end
+function makeCategoryList(categories, start, scrollbar)
+    g.frame.scrollFrame.dataType = 'categories'
+    makeList(categories, start, scrollbar, setCategoryButton)
 end
 
-function makeSongList(songs)
-    for index, song in pairs(songs) do
-        if index <= g.rowCount then
-            setSongButton(index, song)
-        else
-            break
-        end
-    end
+function makeSongList(songs, start, scrollbar)
+    g.frame.scrollFrame.dataType = 'songs'
+    makeList(songs, start, scrollbar, setSongButton)
 end
 
-function buttonHandler(index, entry)
+function makeList(items, start, scrollbar, method)
+    log("making list for " .. #items .. " items")
+    local start = start or 1
+    local stop = math.min(start + g.rowCount - 1, #items)
+    log("start: " .. start .. ", stop: " .. stop)
+    for index, item in pairs(table.slice(items, start, stop, 1)) do
+        method(index, item, scrollbar)
+    end
+    g.frame.scrollFrame.data = items
+    local scrollMax = math.max(#items - (g.rowCount - 1), start)
+    log("setting scroll from 1 to " .. scrollMax)
+    scrollbar:SetMinMaxValues(1, scrollMax)
+    log("done setting scroll")
+end
+
+function buttonHandler(index, entry, scrollbar)
     if entry.entries or entry.songs then
         hideRows()
         BackButton:Show()
         table.insert(g.location, index)
 
         if entry.entries and #entry.entries > 0 then
-            makeList(entry.entries)
+            makeCategoryList(entry.entries, 1, scrollbar)
         elseif entry.songs and #entry.songs > 0 then
-            makeSongList(entry.songs)
+            makeSongList(entry.songs, 1, scrollbar)
         end
     end
 end
 
-function setButton(index, entry)
+function setCategoryButton(index, entry, scrollbar)
     local row = TunguskaSF.rows[index]
     row:SetText(entry.name)
     row:SetScript('OnClick', function()
-        buttonHandler(index, entry)
+        buttonHandler(index, entry, scrollbar)
     end)
     row:Show()
 end
@@ -76,4 +92,21 @@ function setSongButton(index, song)
         StopButton:Show()
     end)
     row:Show()
+end
+
+function onScroll(self, value)
+    local sf = g.frame.scrollFrame
+    log("Scrolled: " .. value);
+    log("Data size: " .. table.getn(sf.data))
+    if sf.dataType == 'categories' then
+        makeCategoryList(sf.data, math.floor(value), self)
+    else
+        makeSongList(sf.data, math.floor(value), self)
+    end
+end
+
+function log(msg)
+    if (g.log) then
+        DEFAULT_CHAT_FRAME:AddMessage(msg)
+    end
 end
